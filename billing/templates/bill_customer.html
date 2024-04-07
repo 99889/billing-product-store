@@ -1,0 +1,18 @@
+<!-- bill_customer.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bill Customer</title>
+</head>
+<body>
+    <h2>Bill Customer</h2>
+    <!-- Form to generate bill for customer -->
+    <form method="post" action="{% url 'bill_customer' %}">
+        {% csrf_token %}
+        <!-- Add form fields for billing customer here -->
+        <button type="submit">Generate Bill</button>
+    </form>
+</body>
+</html>

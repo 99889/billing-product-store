@@ -1,0 +1,28 @@
+<!-- customer_management.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Management</title>
+</head>
+<body>
+    <h2>Customer Management</h2>
+    <!-- Add customer form -->
+    <h3>Add Customer</h3>
+    <form method="post" action="{% url 'add_customer' %}">
+        {% csrf_token %}
+        <!-- Add customer form fields here -->
+        <button type="submit">Add Customer</button>
+    </form>
+
+    <!-- List of customers -->
+    <h3>Customers</h3>
+    <ul>
+        {% for customer in customers %}
+            <li>{{ customer.name }} - {{ customer.email }} <!-- Display other customer details if needed --></li>
+            <!-- Add update and delete links/buttons for each customer if required -->
+        {% endfor %}
+    </ul>
+</body>
+</html>

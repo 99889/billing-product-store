@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Management</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+  <h1>Product Management</h1>
+  <button class="btn btn-primary" id="addProductBtn">Add Product</button>
+  <div id="productList"></div>
+</div>
+
+<!-- Bootstrap JS and jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<!-- Custom JavaScript -->
+<script>
+  // Function to fetch products from backend and render them
+  function fetchProducts() {
+    fetch('http://localhost:8000/products/') // Replace 'http://localhost:8000/products/' with your actual backend URL
+      .then(response => response.json())
+      .then(products => {
+        const productList = document.getElementById('productList');
+        productList.innerHTML = ''; // Clear previous products
+        products.forEach(product => {
+          const productElement = document.createElement('div');
+          productElement.innerHTML = `
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">${product.name}</h5>
+                <p class="card-text">Price: ${product.price}</p>
+              </div>
+            </div>
+          `;
+          productList.appendChild(productElement);
+        });
+      })
+      .catch(error => console.error('Error fetching products:', error));
+  }
+
+  // Event listener for Add Product button click
+  document.getElementById('addProductBtn').addEventListener('click', () => {
+    // Implement logic to show a modal for adding a new product
+    // Example: $('#addProductModal').modal('show');
+  });
+
+  // Initial fetch of products when the page loads
+  fetchProducts();
+</script>
+
+</body>
+</html>
